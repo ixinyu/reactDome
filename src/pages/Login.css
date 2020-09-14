@@ -4,3 +4,7 @@
   left: 50%;
   transform: translate(-50%,-50%);
 }
+.avatar-uploader > .ant-upload {
+  width: 128px;
+  height: 128px;
+}

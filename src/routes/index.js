@@ -2,7 +2,7 @@ import Login from "../pages/Login";
 import List from "../pages/admin/List";
 import Edit from "../pages/admin/Edit";
 import NoFind from "../pages/NoFind";
-
+import Notices from "../pages/admin/Notices"
 export const mainRoutes = [{
   path:'/login',
   component:Login
@@ -22,4 +22,10 @@ export const adminRoutes = [{
   exact:true,   //全匹配
   isShow:true,
   title:'编辑'
-}]
+},{
+  path:'/admin/Notices',
+  component:Notices,
+  isShow:false,
+  title:'消息'
+}
+]

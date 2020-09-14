@@ -1,11 +1,12 @@
 import React from 'react'
-import { Layout, Menu,Dropdown,Avatar,message} from 'antd';
+import { Layout, Menu,Dropdown,Avatar,Badge } from 'antd';
 import {DownOutlined} from '@ant-design/icons';
 import logo from './logo.png'
 import {withRouter} from 'react-router-dom'
 import {adminRoutes} from '../../routes/index'
 import './index.css'
 import {clearToken} from '../../utils/auth'
+import {connect} from 'react-redux'
 // const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
@@ -17,7 +18,10 @@ function Index(props) {
         clearToken()
         props.history.push('/login')
       }else {
-        message.info(p.key)
+        if(p.key==='noti'){
+          props.history.push('/admin/notices')
+        }
+        // message.info(p.key)
       }
     }}>
       <Menu.Item key="noti">消息通知</Menu.Item>
@@ -34,8 +38,11 @@ function Index(props) {
       </div>
       <Dropdown overlay={menu}>
         <div>
-          <Avatar style={{'marginRight':10}}>use</Avatar>
-          <span>超级管理员</span>
+          <Badge dot={!props.isAllRead}>
+            <Avatar style={{'marginRight':10}}>use</Avatar>
+            <span>超级管理员</span>
+          </Badge>
+          
           <DownOutlined />
         </div>
       </Dropdown>
@@ -54,17 +61,9 @@ function Index(props) {
               {route.title}
             </Menu.Item>
           })}
-          {/* <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
-            <Menu.Item key="9">option9</Menu.Item>
-          </SubMenu> */}
         </Menu>
       </Sider>
       <Layout style={{ padding: '20px' }}>
-        {/* <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb> */}
         <Content
           className="site-layout-background"
           style={{
@@ -81,4 +80,6 @@ function Index(props) {
   )
 }
 
-export default withRouter(Index)
+export default connect(state=>state)(withRouter(Index))
+
+//首先withRouter可以用来给组件注入router相关的一些参数,其次withRouter是专门用来处理数据更新问题的
