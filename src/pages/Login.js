@@ -12,10 +12,10 @@ function Login(props) {
     // console.log(values)
 
     loginApi({
-      username:values.username,
+      name:values.username,
       password:values.password
     }).then(res=>{
-      // console.log(res)
+      console.log(res)
       setToken(res.token)
       props.history.push('/admin')
     }).catch(err=>{

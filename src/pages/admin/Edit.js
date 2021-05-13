@@ -68,7 +68,6 @@ function Edit(props) {
     labelCol: { span: 4 },
     wrapperCol: { span: 20 },
   };
-//api/upload/uploadImg
   return (
     <div>
       <Card title={args?"修改":"添加"} extra={<Button type='primary' onClick={()=>{

@@ -1,7 +1,8 @@
 import axios from 'axios'
 import {getToken,clearToken} from './auth'
 import { message } from 'antd';
-const baseUrl = 'http://localhost:5000/'
+// const baseUrl = 'http://localhost:5000/'
+const baseUrl = 'http://192.168.1.44/hotel-system/public/index.php/'
 const instance = axios.create({
   baseURL: baseUrl, // api的base_url
   timeout: 15000 // 请求超时时间

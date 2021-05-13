@@ -3,6 +3,7 @@ import List from "../pages/admin/List";
 import Edit from "../pages/admin/Edit";
 import NoFind from "../pages/NoFind";
 import Notices from "../pages/admin/Notices"
+import Other from '../pages/admin/Other'
 export const mainRoutes = [{
   path:'/login',
   component:Login
@@ -27,5 +28,10 @@ export const adminRoutes = [{
   component:Notices,
   isShow:false,
   title:'消息'
-}
+},{
+  path:'/admin/Other',
+  component:Other,
+  isShow:true,
+  title:'详情'
+},
 ]
