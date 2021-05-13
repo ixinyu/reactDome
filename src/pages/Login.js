@@ -6,14 +6,15 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {setToken} from '../utils/auth'
 import './Login.css'
 import { loginApi } from '../services/login'
+// import {md5} from 'js-md5'
 function Login(props) {
   // console.log(props)
   const onFinish = values => {
     // console.log(values)
 
     loginApi({
-      name:values.username,
-      password:values.password
+      username:values.username||'admin',
+      password:values.password||'123456'
     }).then(res=>{
       console.log(res)
       setToken(res.token)
