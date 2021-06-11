@@ -5,10 +5,11 @@ import { Form, Input, Button,Card } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {setToken} from '../utils/auth'
 import './Login.css'
-import { loginApi } from '../services/login'
+import { loginApi,addUsers } from '../services/login'
 // import {md5} from 'js-md5'
 function Login(props) {
   // console.log(props)
+  var [form] = Form.useForm()
   const onFinish = values => {
     // console.log(values)
 
@@ -16,19 +17,31 @@ function Login(props) {
       username:values.username||'admin',
       password:values.password||'123456'
     }).then(res=>{
-      console.log(res)
+      // console.log(res)
       setToken(res.token)
       props.history.push('/admin')
     }).catch(err=>{
       console.log(err)
     })
   };
+  const addUser =()=>{
+    // console.log(form.getFieldsValue())
+    var params = form.getFieldsValue()
+    addUsers({
+      username:params.username,
+      password:params.password
+    }).then(res=>{
+      console.log(res)
+    })
+
+  }
 
   return (
     <Card title="管理后台" className="login-form">
      <Form
       initialValues={{ remember: true }}
       onFinish={onFinish}
+      form={form}
     >
       <Form.Item
         name="username"
@@ -49,6 +62,9 @@ function Login(props) {
       <Form.Item>
         <Button type="primary" htmlType="submit">
          登录
+        </Button>
+        <Button type="danger" onClick={addUser}>
+         添加用户
         </Button>
       </Form.Item>
     </Form>

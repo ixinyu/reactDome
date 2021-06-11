@@ -20,7 +20,7 @@ router.post('/addUser',async ctx=>{
     await oModel.save().then(user=>{
       const data = {
         msg:'添加成功',
-        data:user
+        data:null
       }
       ctx.success(data)
     }).catch((err)=>{
